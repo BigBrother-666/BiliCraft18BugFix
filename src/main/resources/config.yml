@@ -1,0 +1,5 @@
+# 重载指令：bugfix reload，权限：bugfix.reload
+# Oraxen家具放置检测
+Oraxen-Furniture-Detect:
+  Factions: true
+  Residence: true

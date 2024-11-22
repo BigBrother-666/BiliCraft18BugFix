@@ -1,0 +1,21 @@
+name: BiliCraft18BugFix
+version: '${project.version}'
+main: com.bigbrother.biliCraft18BugFix.BiliCraft18BugFix
+api-version: '1.20'
+authors: [ BigBrother ]
+
+softdepend:
+  - Factions
+  - Residence
+depend:
+  - Oraxen
+
+commands:
+  bugfix:
+    description: 插件主指令
+    aliases: [ bugfix ]
+
+permissions:
+  bugfix.reload:
+    description: "重载配置文件权限"
+    default: op
