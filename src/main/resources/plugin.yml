@@ -7,7 +7,6 @@ authors: [ BigBrother ]
 softdepend:
   - Factions
   - Residence
-depend:
   - Oraxen
 
 commands:
