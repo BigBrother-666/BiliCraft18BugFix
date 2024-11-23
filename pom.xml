@@ -53,7 +53,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>/home/dyh/文档/bilicraft/servers/paper1.20.4-1/plugins</outputDirectory>
+                            <outputDirectory>${env.MINECRAFT_SERVER_PLUGIN_DIR}</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}</directory>
