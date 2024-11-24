@@ -8,6 +8,7 @@ softdepend:
   - Factions
   - Residence
   - Oraxen
+  - AuraSkills
 
 commands:
   bugfix:
