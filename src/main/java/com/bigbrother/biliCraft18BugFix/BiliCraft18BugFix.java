@@ -41,11 +41,11 @@ public final class BiliCraft18BugFix extends JavaPlugin {
             factionsEnabled = true;
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Residence")) {
-            logger.log(Level.INFO, "检测到Residence插件");
+        if (Bukkit.getPluginManager().isPluginEnabled("Residence") && Bukkit.getPluginManager().isPluginEnabled("AuraSkills")) {
+            logger.log(Level.INFO, "检测到Residence和AuraSkills插件");
             residenceEnabled = true;
             FlagPermissions.addFlag("aspeed1");
-            Bukkit.getPluginManager().registerEvents(new ResidenceListener(), this);
+            Bukkit.getPluginManager().registerEvents(new ResidenceListener(this), this);
             logger.log(Level.INFO, "注册Residence flag: aspeed1 成功");
         }
     }

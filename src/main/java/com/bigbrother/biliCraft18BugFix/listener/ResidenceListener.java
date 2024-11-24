@@ -8,13 +8,23 @@ import com.bekvon.bukkit.residence.event.ResidenceFlagChangeEvent;
 import com.bekvon.bukkit.residence.event.ResidenceOwnerChangeEvent;
 import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 import com.bekvon.bukkit.residence.protection.FlagPermissions;
+import com.bigbrother.biliCraft18BugFix.BiliCraft18BugFix;
+import dev.aurelium.auraskills.api.event.user.UserLoadEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public class ResidenceListener implements Listener {
+    private final BiliCraft18BugFix plugin;
+
+    public ResidenceListener(BiliCraft18BugFix plugin) {
+        this.plugin = plugin;
+    }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onResidenceChanged(ResidenceChangedEvent event) {
@@ -81,6 +91,29 @@ public class ResidenceListener implements Listener {
 
         Residence.getInstance().getPlayerManager().getResidencePlayer(player).onQuit();
         Residence.getInstance().getTeleportMap().remove(player.getUniqueId().toString());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onAuraUserLoadEvent(UserLoadEvent event) {
+        checkUpdateSpeed(event.getPlayer());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onPlayerChangedWorldEvent(PlayerChangedWorldEvent event) {
+        checkUpdateSpeed(event.getPlayer());
+    }
+
+    private void checkUpdateSpeed(Player player) {
+        if (player == null) {
+            return;
+        }
+        Residence instance = Residence.getInstance();
+        ClaimedResidence residence = instance.getResidenceManager().getByLoc(player.getLocation());
+        if (residence != null) {
+            if (residence.getPermissions().playerHas(player, "aspeed1", false)) {
+                player.setWalkSpeed(player.getWalkSpeed() + instance.getConfigManager().getWalkSpeed1().floatValue());
+            }
+        }
     }
 
     private void checkSpecialFlags(Player player, ClaimedResidence newRes, ClaimedResidence oldRes) {
