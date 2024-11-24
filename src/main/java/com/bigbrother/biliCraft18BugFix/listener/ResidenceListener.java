@@ -70,7 +70,7 @@ public class ResidenceListener implements Listener {
             }
     }
 
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPlayerQuitEvent(PlayerQuitEvent event) {
 
         Player player = event.getPlayer();
