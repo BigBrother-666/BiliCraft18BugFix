@@ -8,3 +8,4 @@ Oraxen家具放置时，无视领地放置权限。支持的领地插件：
 ## 2. Residence领地wspeed1/wspeed2 bug
 玩家出领地后，速度强制设置为`0.2F`（默认速度），导致AuraSkills的速度增益失效。新增`aspeed1`flag解决此问题，`aspeed1`关联Residence设置中的`WalkSpeed.'1'`的值，进/出领地时加/减玩家的速度，而不是set。
 
+## 3. FlagsH旗帜在领地放置/破坏/放大检测
