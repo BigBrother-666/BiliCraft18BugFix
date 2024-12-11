@@ -9,6 +9,7 @@ softdepend:
   - Residence
   - Oraxen
   - AuraSkills
+  - FlagsH
 
 commands:
   bugfix:

@@ -172,5 +172,13 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/Residence5.1.5.2-remove-WEAVING-check.jar</systemPath>
         </dependency>
+
+        <dependency>
+            <groupId>fr.formiko.flagsh</groupId>
+            <artifactId>FlagsH</artifactId>
+            <version>4.0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/FlagsH-4.0.1-no-towny-check.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>

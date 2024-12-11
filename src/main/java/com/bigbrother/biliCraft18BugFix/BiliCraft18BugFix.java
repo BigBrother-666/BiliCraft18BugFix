@@ -2,6 +2,7 @@ package com.bigbrother.biliCraft18BugFix;
 
 import com.bekvon.bukkit.residence.protection.FlagPermissions;
 import com.bigbrother.biliCraft18BugFix.commands.CommandReload;
+import com.bigbrother.biliCraft18BugFix.listener.FlagsHListener;
 import com.bigbrother.biliCraft18BugFix.listener.OraxenFurniturePlaceListener;
 import com.bigbrother.biliCraft18BugFix.listener.ResidenceListener;
 import org.bukkit.Bukkit;
@@ -31,22 +32,32 @@ public final class BiliCraft18BugFix extends JavaPlugin {
 
 
     private void hook() {
-        if (Bukkit.getPluginManager().isPluginEnabled("Oraxen")) {
-            Bukkit.getPluginManager().registerEvents(new OraxenFurniturePlaceListener(), this);
-            logger.log(Level.INFO, "Oraxen家具放置监听器注册成功");
-        }
-
         if (Bukkit.getPluginManager().isPluginEnabled("Factions")) {
             logger.log(Level.INFO, "检测到Factions插件");
             factionsEnabled = true;
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Residence") && Bukkit.getPluginManager().isPluginEnabled("AuraSkills")) {
-            logger.log(Level.INFO, "检测到Residence和AuraSkills插件");
+        if (Bukkit.getPluginManager().isPluginEnabled("Residence")) {
+            logger.log(Level.INFO, "检测到Residence插件");
             residenceEnabled = true;
-            FlagPermissions.addFlag("aspeed1");
-            Bukkit.getPluginManager().registerEvents(new ResidenceListener(this), this);
-            logger.log(Level.INFO, "注册Residence flag: aspeed1 成功");
+            if (Bukkit.getPluginManager().isPluginEnabled("AuraSkills")) {
+                logger.log(Level.INFO, "检测到AuraSkills插件");
+                FlagPermissions.addFlag("aspeed1");
+                Bukkit.getPluginManager().registerEvents(new ResidenceListener(), this);
+                logger.log(Level.INFO, "注册Residence flag: aspeed1 成功，可用来修复AuraSkills速度增益消失问题");
+            }
+        }
+
+        if (Bukkit.getPluginManager().isPluginEnabled("FlagsH")) {
+            logger.log(Level.INFO, "检测到FlagsH插件");
+            Bukkit.getPluginManager().registerEvents(new FlagsHListener(), this);
+            logger.log(Level.INFO, "FlagsH旗帜破坏监听器注册成功");
+        }
+
+        if (Bukkit.getPluginManager().isPluginEnabled("Oraxen")) {
+            logger.log(Level.INFO, "检测到Oraxen插件");
+            Bukkit.getPluginManager().registerEvents(new OraxenFurniturePlaceListener(), this);
+            logger.log(Level.INFO, "Oraxen家具放置监听器注册成功");
         }
     }
 
