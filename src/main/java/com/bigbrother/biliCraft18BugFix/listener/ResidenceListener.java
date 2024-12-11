@@ -8,24 +8,15 @@ import com.bekvon.bukkit.residence.event.ResidenceFlagChangeEvent;
 import com.bekvon.bukkit.residence.event.ResidenceOwnerChangeEvent;
 import com.bekvon.bukkit.residence.protection.ClaimedResidence;
 import com.bekvon.bukkit.residence.protection.FlagPermissions;
-import com.bigbrother.biliCraft18BugFix.BiliCraft18BugFix;
 import dev.aurelium.auraskills.api.event.user.UserLoadEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public class ResidenceListener implements Listener {
-    private final BiliCraft18BugFix plugin;
-
-    public ResidenceListener(BiliCraft18BugFix plugin) {
-        this.plugin = plugin;
-    }
-
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onResidenceChanged(ResidenceChangedEvent event) {
         ClaimedResidence newRes = event.getTo();
